@@ -81,4 +81,79 @@ const getUserProfile = expressAsyncHandler(async (req, res) => {
     }
 });
 
-export { authUser, registerUser, getUserProfile };
+// @desc    Get users
+// @route   GET /api/users
+// @access  Private/Admin
+const getAllUsers = expressAsyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.json(users);
+});
+
+// @desc    Get user by ID
+// @route   GET /api/users/:id
+// @access  Private/Admin
+const getUserById = expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id).select('-password');
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+// @desc    Update user
+// @route   PUT /api/users/:id
+// @access  Private/Admin
+const updateUser = expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+        user.isAdmin = req.body.isAdmin;
+        user.isDriver = req.body.isDriver;
+        user.numCompanions = req.body.numCompanions || user.numCompanions;
+        user.companions = req.body.companions || user.companions;
+
+        const updatedUser = await user.save();
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            phoneNumber: updatedUser.phoneNumber,
+            isAdmin: updatedUser.isAdmin,
+            isDriver: updatedUser.isDriver,
+            numCompanions: updatedUser.numCompanions,
+            companions: updatedUser.companions,
+        });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+const deleteUser = expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        await user.remove();
+        res.json({ message: 'User removed' });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+export {
+    authUser,
+    registerUser,
+    getUserProfile,
+    getAllUsers,
+    getUserById,
+    updateUser,
+    deleteUser,
+};

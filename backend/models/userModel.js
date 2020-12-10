@@ -24,6 +24,7 @@ const userSchema = mongoose.Schema(
         isDriver: {
             type: Boolean,
             required: true,
+            default: false,
         },
         numCompanions: {
             type: Number,
