@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import packageSchema from './packageSchema.js';
 
 const tripSchema = mongoose.Schema(
     {
@@ -23,21 +24,21 @@ const tripSchema = mongoose.Schema(
             required: true,
             ref: 'User',
         },
+        numPassengers: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
         passengers: [
             {
-                name: { type: String, required: true },
-                phoneNumber: { type: String, required: true },
-            },
-        ],
-        packages: [
-            {
-                _id: {
-                    type: mongoose.Schema.Types.ObjectId,
+                user: {
+                    type: mongoose.Schema.Types.ObjectID,
                     required: true,
-                    ref: 'Package',
+                    ref: 'User',
                 },
             },
         ],
+        packages: [packageSchema],
     },
     {
         timestamp: true,

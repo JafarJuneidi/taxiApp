@@ -7,15 +7,11 @@ const packageSchema = mongoose.Schema(
             required: true,
             ref: 'User',
         },
-        packageItems: [
-            {
-                _id: {
-                    type: mongoose.Schema.Types.ObjectID,
-                    required: true,
-                    auto: true,
-                },
-            },
-        ],
+        packageItem: {
+            type: mongoose.Schema.Types.ObjectID,
+            required: true,
+            auto: true,
+        },
         shippingAddress: {
             city: { type: String, required: true },
             address: { type: String, required: true },
@@ -27,6 +23,6 @@ const packageSchema = mongoose.Schema(
     }
 );
 
-const Package = mongoose.model('Package', packageSchema);
+// const Package = mongoose.model('Package', packageSchema);
 
-export default Package;
+export default packageSchema;

@@ -39,4 +39,13 @@ const isAdmin = (req, res, next) => {
     }
 };
 
-export { protect, isAdmin };
+const isDriver = (req, res, next) => {
+    if (req.user && req.user.isDriver) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Not authorized as an driver');
+    }
+};
+
+export { protect, isAdmin, isDriver };

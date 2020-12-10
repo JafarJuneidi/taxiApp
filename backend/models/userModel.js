@@ -25,6 +25,17 @@ const userSchema = mongoose.Schema(
             type: Boolean,
             required: true,
         },
+        numCompanions: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+        companions: [
+            {
+                name: { type: String, required: false },
+                phoneNumber: { type: String, required: false },
+            },
+        ],
     },
     {
         timestamp: true,
