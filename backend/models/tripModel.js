@@ -36,6 +36,17 @@ const tripSchema = mongoose.Schema(
                     required: true,
                     ref: 'User',
                 },
+                numCompanions: {
+                    type: Number,
+                    required: true,
+                    default: 0,
+                },
+                companions: [
+                    {
+                        name: { type: String, required: false },
+                        phoneNumber: { type: String, required: false },
+                    },
+                ],
             },
         ],
         packages: [packageSchema],

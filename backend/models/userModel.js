@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema(
         },
         password: {
             type: String,
-            required: true,
+            required: false,
         },
         isAdmin: {
             type: Boolean,
@@ -26,17 +26,6 @@ const userSchema = mongoose.Schema(
             required: true,
             default: false,
         },
-        numCompanions: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-        companions: [
-            {
-                name: { type: String, required: false },
-                phoneNumber: { type: String, required: false },
-            },
-        ],
     },
     {
         timestamp: true,
