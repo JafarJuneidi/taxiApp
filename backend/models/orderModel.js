@@ -2,11 +2,33 @@ import mongoose from 'mongoose';
 
 const orderSchema = mongoose.Schema(
     {
+        userName: {
+            type: String,
+            required: false,
+            default: null,
+        },
+        userPhoneNumber: {
+            type: String,
+            required: false,
+            default: null,
+        },
         user: {
             type: mongoose.Schema.Types.ObjectID,
-            required: true,
+            required: false,
             ref: 'User',
+            default: null,
         },
+        numCompanions: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+        companions: [
+            {
+                name: { type: String, required: false },
+                phoneNumber: { type: String, required: false },
+            },
+        ],
         from: {
             city: { type: String, required: true },
             address: { type: String, required: true },
@@ -16,11 +38,11 @@ const orderSchema = mongoose.Schema(
             address: { type: String, required: true },
         },
         moveAt: {
-            type: Date,
+            type: String,
             required: true,
         },
         arriveAt: {
-            type: Date,
+            type: String,
             required: true,
         },
     },

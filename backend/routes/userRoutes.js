@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 import {
     authUser,
-    deleteUser,
+    deleteUserById,
     getAllUsers,
     getUserById,
     getUserProfile,
@@ -18,6 +18,6 @@ router
     .route('/:id')
     .get(protect, isAdmin, getUserById)
     .put(protect, isAdmin, updateUser)
-    .delete(protect, isAdmin, deleteUser);
+    .delete(protect, isAdmin, deleteUserById);
 
 export default router;
