@@ -113,8 +113,6 @@ const updateUser = expressAsyncHandler(async (req, res) => {
         user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
         user.isAdmin = req.body.isAdmin;
         user.isDriver = req.body.isDriver;
-        user.numCompanions = req.body.numCompanions || user.numCompanions;
-        user.companions = req.body.companions || user.companions;
 
         const updatedUser = await user.save();
 
@@ -124,8 +122,6 @@ const updateUser = expressAsyncHandler(async (req, res) => {
             phoneNumber: updatedUser.phoneNumber,
             isAdmin: updatedUser.isAdmin,
             isDriver: updatedUser.isDriver,
-            numCompanions: updatedUser.numCompanions,
-            companions: updatedUser.companions,
         });
     } else {
         res.status(404);

@@ -12,17 +12,18 @@ const tripSchema = mongoose.Schema(
             address: { type: String, required: true },
         },
         moveAt: {
-            type: Date,
+            type: String,
             required: true,
         },
         arriveAt: {
-            type: Date,
+            type: String,
             required: true,
         },
         driver: {
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
+            required: false,
             ref: 'User',
+            default: null,
         },
         numPassengers: {
             type: Number,
@@ -33,8 +34,19 @@ const tripSchema = mongoose.Schema(
             {
                 user: {
                     type: mongoose.Schema.Types.ObjectID,
-                    required: true,
+                    required: false,
                     ref: 'User',
+                    default: null,
+                },
+                headUserName: {
+                    type: String,
+                    required: false,
+                    default: null,
+                },
+                headUserPhoneNumber: {
+                    type: String,
+                    required: false,
+                    default: null,
                 },
                 numCompanions: {
                     type: Number,

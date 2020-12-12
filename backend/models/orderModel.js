@@ -18,6 +18,10 @@ const orderSchema = mongoose.Schema(
             ref: 'User',
             default: null,
         },
+        userIsPassenger: {
+            type: Boolean,
+            required: true,
+        },
         numCompanions: {
             type: Number,
             required: true,
