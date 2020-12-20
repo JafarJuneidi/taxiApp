@@ -1,5 +1,6 @@
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
+import mongoose from 'mongoose';
 
 // @desc    creates an order
 // @route   POST /api/orders
@@ -105,6 +106,7 @@ const updateOrder = expressAsyncHandler(async (req, res) => {
         order.moveAt = req.body.moveAt || order.moveAt;
         order.arriveAt = req.body.arriveAt || order.arriveAt;
         order.userIsPassenger = req.body.userIsPassenger;
+        order.trip = mongoose.Types.ObjectId(req.body.trip) || trip.trip;
 
         const updatedOrder = await order.save();
 

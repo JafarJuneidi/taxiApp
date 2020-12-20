@@ -49,6 +49,12 @@ const orderSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        trip: {
+            type: mongoose.Schema.Types.ObjectID,
+            required: false,
+            ref: 'Trip',
+            default: null,
+        },
     },
     {
         timestamp: true,
